@@ -51,7 +51,7 @@ def header(steps: int):
         "#define FILTER_STEPS {5:d}\n"
         "#define FREQ_MIN {6:d}\n"
         "#define FREQ_MAX {7:d}\n"
-        "#define STEP_HZ {8:d}\n".format(
+        "#define STEP_HZ {8:d}\n\n".format(
             freq_min,
             freq_max,
             int(step_hz),
