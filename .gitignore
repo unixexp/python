@@ -4,4 +4,6 @@ __pycache__
 node_modules
 dist
 package-lock.json
+site-packages
+.venv
 .DS_Store
