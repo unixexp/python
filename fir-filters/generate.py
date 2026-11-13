@@ -1,7 +1,7 @@
 import scipy.signal as sig
 
 sample_rate = 44100
-taps = 256
+taps = 128
 step_hz = 500
 freq_min = 2000
 freq_max = 6000
