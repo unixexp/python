@@ -37,7 +37,7 @@ def generate_lr4_linear_phase(fs, fc, num_taps):
     return taps_lpf, taps_hpf
 
 # Пример для 44.1 кГц, срез 3500 Гц, 128 коэффициентов
-lpf, hpf = generate_lr4_linear_phase(fs=44100, fc=4000, num_taps=128)
+lpf, hpf = generate_lr4_linear_phase(fs=44100, fc=3000, num_taps=128)
 
 print("const float fir_lpf[128] = {")
 print(", ".join(f"{x:.8f}f" for x in lpf))
