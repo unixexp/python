@@ -1,6 +1,13 @@
 import numpy as np
+import sys
 
 def generate_lr4_linear_phase(fs, fc, num_taps):
+    taps = 128
+    try:
+        taps = sys.argv[1]
+    except IndexError:
+        pass
+
     # Используем высокую сетку БПФ для точного построения кривой
     n_fft = 16384
     freqs = np.fft.rfftfreq(n_fft, d=1.0/fs)
@@ -36,14 +43,19 @@ def generate_lr4_linear_phase(fs, fc, num_taps):
 
     return taps_lpf, taps_hpf
 
-# Пример для 44.1 кГц, срез 3500 Гц, 128 коэффициентов
-lpf, hpf = generate_lr4_linear_phase(fs=44100, fc=3000, num_taps=512)
+taps = 128
+try:
+    taps = int(sys.argv[1])
+except IndexError:
+    pass
 
-print("const float fir_lpf[512] = {")
+lpf, hpf = generate_lr4_linear_phase(fs=44100, fc=3000, num_taps=taps)
+
+print("const float fir_lpf[{}] = {{".format(taps))
 print(", ".join(f"{x:.8f}f" for x in lpf))
 print("};\n")
 
-print("const float fir_hpf[512] = {")
+print("const float fir_hpf[{}] = {{".format(taps))
 print(", ".join(f"{x:.8f}f" for x in hpf))
 print("};")
 
